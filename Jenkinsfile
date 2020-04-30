@@ -1,23 +1,12 @@
 pipeline {
     agent any
-    paramenters {
-        choice(name:'PerformMavenRelease',choices:'False\nTrue',description:'desc')
-        password(name:'CredsToUse',description:'Apassword to build with',defaultValue:'')
+    parameters {
+        string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
     }
     stages {
-        stage('Build') {
+        stage('Example') {
             steps {
-                echo 'Building..'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                echo "${params.Greeting} World!"
             }
         }
     }
